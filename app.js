@@ -1,7 +1,5 @@
 //importanto bibliotecas
 var app = require('./config/express')();
-var rotasProcutos = require('./app/routes/produtos')(app);
-
 
 
 // subindo o servidor
