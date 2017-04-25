@@ -1,11 +1,12 @@
 
-module.exports = function(app){
+module.exports = function (app) {
     //rotas para nodejs
-    app.get('/produtos',function(req,res){
-        var connection = app.infra.connectionFactory();
+    app.get('/produtos', function (req, res) {
+        var connection = new app.infra.connectionFactory();
+        var produtosBd = new app.infra.ProdutosDAO(connection);
 
-        connection.query('select * from livros',function(err,results){
-            res.render('produtos/lista', {lista:results});
+        produtosBd.lista(function (err, resultados) {
+            res.render('produtos/lista', { lista: resultados });
         });
 
         connection.end();
